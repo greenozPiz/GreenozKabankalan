@@ -56,18 +56,16 @@ function money(n){return "₱"+n.toLocaleString()}
 function setSize(size){
  selectedSize=size; selectedCount=1; selectedFlavors=[];
  document.querySelectorAll(".size-chip,.size-option").forEach(x=>x.classList.toggle("active",x.dataset.size===size));
- const maxFlavors=allowedCount();
- const countOptions=maxFlavors===1?[1]:(maxFlavors===2?[1,2]:[1,2,3,4]);
- document.getElementById("flavorRule").innerHTML=maxFlavors===1
+ document.getElementById("flavorRule").innerHTML=allowedCount()===1
  ? `<strong>${size}</strong> allows <strong>1 flavor only</strong>.`
- : `<strong>${size}</strong> allows <strong>1 to ${maxFlavors} flavors</strong>. Choose your favorites.`;
- document.getElementById("flavorCount").innerHTML=countOptions.map(n=>`<button class="count-btn ${n===selectedCount?"active":""}" data-count="${n}">${n} FLAVOR${n>1?"S":""}</button>`).join("");
+ : `<strong>${size}</strong> allows <strong>1 or 2 flavors</strong>. Choose one or two.`;
+ document.getElementById("flavorCount").innerHTML=allowedCount()===1
+ ? `<button class="count-btn active">1 FLAVOR</button>`
+ : `<button class="count-btn active" data-count="1">1 FLAVOR</button><button class="count-btn" data-count="2">2 FLAVORS</button>`;
  document.querySelectorAll(".count-btn[data-count]").forEach(b=>b.addEventListener("click",()=>{
    selectedCount=Number(b.dataset.count); selectedFlavors=[];
    document.querySelectorAll(".count-btn").forEach(x=>x.classList.toggle("active",x===b));
    renderSelectors(); renderSummary();
- }));
- renderSelectors(); renderSummary();
  }));
  renderSelectors();
  renderSummary();
