@@ -66,7 +66,7 @@
   <div class="section-title">
     <p class="eyebrow">BUILD YOUR PIZZA</p>
     <h2>Start Your Order</h2>
-    <p>Regular & Family: 1 flavor • XL: 2 flavors • XXL & Party: 4 flavors</p>
+    <p>Regular & Family: 1 flavor • XL, XXL & Party: 1 or 2 flavors • 2-flavor price uses the higher-priced flavor</p>
   </div>
 
   <div class="builder">
@@ -102,8 +102,9 @@
       <div class="form-grid">
         <label>Name<input id="customerName" required placeholder="Your name"></label>
         <label>Contact #<input id="customerContact" required placeholder="09XXXXXXXXX"></label>
-        <label class="wide">Address<textarea id="customerAddress" required rows="3" placeholder="Delivery address"></textarea></label>
         <label>Delivery / Pickup<select id="method" required><option value="">Select one</option><option>Delivery</option><option>Pickup</option></select></label>
+        <label>Location / Area<select id="location" required><option value="">Select your area</option></select></label>
+        <label class="wide">Other Address Information / Description<textarea id="customerAddress" required rows="3" placeholder="House number, street, landmark, subdivision, purok/sitio, or other directions"></textarea></label>
         <label>Date and Time<input id="datetime" type="datetime-local" required></label>
       </div>
       <div class="cart-box">

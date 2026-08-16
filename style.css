@@ -94,3 +94,33 @@ footer{background:#111;color:#ddd;text-align:center;padding:28px 16px;font-size:
 @media(max-width:1050px){.nav a{padding:10px 8px;font-size:11px}.hero-badge{width:170px;height:170px}.hero-badge strong{font-size:60px}.builder{grid-template-columns:1fr 1fr}}
 @media(max-width:800px){.nav-wrap{min-height:70px}.brand img{width:155px;height:60px}.menu-toggle{display:block}.nav{display:none;position:absolute;top:70px;left:0;right:0;background:#fff;border-top:1px solid #eee;padding:10px 16px 16px;flex-direction:column;align-items:stretch;box-shadow:0 15px 25px #0001}.nav.open{display:flex}.nav a{text-align:center}.nav-order{text-align:center}.hero-inner{min-height:540px}.hero-badge{display:none}.pizza-grid{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
 @media(max-width:560px){.nav-wrap{width:min(calc(100% - 22px),var(--max))}.brand img{width:130px;height:55px}.hero{min-height:520px}.hero-inner{min-height:520px}.hero-copy>p:not(.eyebrow){font-size:17px}.hero-buttons{flex-direction:column}.btn{width:100%}.section{width:min(calc(100% - 22px),var(--max));padding:65px 0}.size-guide{grid-template-columns:repeat(2,1fr)}.size-chip:last-child{grid-column:span 2}.price-row{grid-template-columns:repeat(2,1fr)}.price-row button{border-bottom:1px solid var(--line)}.builder{grid-template-columns:1fr;padding:10px}.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:span 1}.customer-order{padding:20px}.info-grid h2{font-size:38px}}
+
+/* Greenoz v2 menu */
+.brand img{width:270px;height:96px;filter:drop-shadow(0 5px 5px rgba(0,0,0,.45))}
+.menu-section{width:100%;max-width:none;padding:88px max(16px,calc((100% - 1240px)/2));background:var(--red);color:#fff;position:relative;overflow:hidden}
+.menu-section:before{content:"";position:absolute;inset:0;background:url("assets/background.png") center/520px repeat;opacity:.08;pointer-events:none}
+.menu-section>*{position:relative;z-index:1}
+.menu-heading .eyebrow,.menu-heading h2,.menu-heading>p:last-child{color:#fff}
+.menu-layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:20px;align-items:start}
+.menu-main .size-guide{margin-bottom:16px}
+.menu-main .size-chip{background:#fff;color:var(--red);border-color:#fff}
+.menu-main .size-chip:hover,.menu-main .size-chip.active{background:var(--green);color:#fff;border-color:var(--green)}
+.menu-main .pizza-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.menu-main .pizza-card{background:#fff;color:var(--ink);border:0;border-left:5px solid #ddd}
+.menu-main .pizza-card:hover{border-left-color:var(--green)}
+.menu-side{display:grid;gap:14px;position:sticky;top:105px}
+.how-card,.price-card{background:#fff;color:var(--ink);border-radius:16px;padding:20px;box-shadow:0 12px 35px #8b000022}
+.how-card h3,.price-card h3{margin:0 0 15px;color:var(--green);font-size:18px}
+.how-card>div{display:grid;grid-template-columns:30px 1fr;gap:10px;margin:12px 0}
+.how-card b{background:var(--red);color:#fff;width:28px;height:28px;border-radius:50%;display:grid;place-items:center}
+.how-card p{margin:0;font-size:12px;line-height:1.5;color:#555}
+.price-card{background:var(--green);color:#fff}
+.price-card h3{color:#fff}
+.price-table>div{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:5px;padding:9px 0;border-bottom:1px solid #ffffff33;font-size:11px}
+.price-table>div:first-child{font-weight:900;font-size:9px;border-bottom:1px solid #fff}
+.price-table strong{color:#fff}.price-table em{font-style:normal}
+.price-card small{display:block;margin-top:10px;font-size:9px;opacity:.9;line-height:1.4}
+.delivery-fee-row{color:var(--green)}
+@media(max-width:1050px){.brand img{width:235px;height:84px}.menu-layout{grid-template-columns:1fr}.menu-side{position:static;grid-template-columns:1fr 1fr}}
+@media(max-width:800px){.brand img{width:210px;height:76px}}
+@media(max-width:560px){.brand img{width:180px;height:68px}.menu-section{padding:65px 11px}.menu-main .pizza-grid{grid-template-columns:1fr}.menu-side{grid-template-columns:1fr}}
