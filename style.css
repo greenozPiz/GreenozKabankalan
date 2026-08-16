@@ -40,8 +40,17 @@ h1 span{color:var(--red)}
 .size-chip strong,.size-chip span{display:block}
 .size-chip strong{font-size:17px}.size-chip span{font-size:10px;margin-top:4px}
 .pizza-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
-.pizza-card{background:#fff;border:1px solid var(--line);border-left:5px solid #ddd;border-radius:15px;padding:18px;box-shadow:0 7px 25px #0000000a;cursor:pointer;transition:.18s}
-.pizza-card:hover{transform:translateY(-2px);box-shadow:0 12px 30px #00000012;border-left-color:var(--red)}
+..pizza-card:hover {
+    background: #008f4c !important;
+    color: #fff !important;
+    border-color: #008f4c !important;
+}
+
+.pizza-card:hover h3,
+.pizza-card:hover p,
+.pizza-card:hover span {
+    color: #fff !important;
+}
 .pizza-card.selected{border-left-color:var(--green);box-shadow:0 0 0 2px #008f4c22}
 .pizza-top{display:flex;align-items:center;gap:8px}
 .pizza-number{font-size:12px;color:var(--green);font-weight:900}
