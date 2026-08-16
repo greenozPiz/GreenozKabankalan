@@ -1,213 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#e10600">
-  <title>Greenoz Pizzeria Kabankalan</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e10600">
+<title>Greenoz Pizzeria Kabankalan</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site-header">
+
+<header class="header">
   <div class="nav-wrap">
-    <a class="brand" href="#home">
-      <img src="assets/logo.png" alt="Greenoz Pizzeria Kabankalan">
-    </a>
-    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <a href="#home" class="brand"><img src="assets/logo.png" alt="Greenoz Pizzeria Kabankalan"></a>
+    <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
     <nav class="nav">
-      <a href="#home">Home</a>
-      <a href="#menu">Menu</a>
-      <a href="#order">Order</a>
-      <a href="#contact">Contact</a>
+      <a href="#home">HOME</a>
+      <a href="#menu">MENU</a>
+      <a href="#order">ORDER</a>
+      <a href="#branches">BRANCHES</a>
+      <a href="#contact">CONTACT</a>
+      <a class="nav-order" href="#order">ORDER NOW</a>
     </nav>
   </div>
 </header>
 
 <main id="home">
-  <section class="hero">
-    <div class="hero-content">
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
       <p class="eyebrow">GREENOZ PIZZERIA • KABANKALAN</p>
-      <h1>Your pizza,<br><span>your way.</span></h1>
-      <p>Choose your favorite flavor, pick a size, and order fresh from Greenoz Pizzeria.</p>
-      <div class="actions">
-        <a class="btn btn-green" href="#menu">Explore Menu</a>
-        <a class="btn btn-outline" href="#order">Order Now</a>
+      <h1>GOOD PIZZA.<br><span>GOOD TIMES.</span></h1>
+      <p>Freshly baked pizza with the flavors you love. Choose your size, pick your flavors, and order through Facebook.</p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-green">VIEW MENU</a>
+        <a href="#order" class="btn btn-red">ORDER NOW</a>
       </div>
     </div>
-  </section>
+    <div class="hero-badge">
+      <strong>16</strong>
+      <span>Pizza Flavors</span>
+      <small>Choose your favorites</small>
+    </div>
+  </div>
+</section>
 
-  <section class="section" id="menu">
-    <div class="heading">
-      <p class="eyebrow">OUR PIZZA MENU</p>
-      <h2>Flavors & Prices</h2>
-      <p>All prices are in Philippine pesos. Select a pizza below when preparing your order.</p>
+<section class="menu-section section" id="menu">
+  <div class="section-title">
+    <p class="eyebrow">OUR MENU</p>
+    <h2>Pizza Flavors</h2>
+    <p>Click any flavor to add it to your order.</p>
+  </div>
+
+  <div class="size-guide">
+    <button class="size-chip" data-size="Regular"><strong>REGULAR</strong><span>6 SQ CUTS</span></button>
+    <button class="size-chip" data-size="Family"><strong>FAMILY</strong><span>16 SQ CUTS</span></button>
+    <button class="size-chip" data-size="XL"><strong>XL</strong><span>24 SQ CUTS • 2 FLAVORS</span></button>
+    <button class="size-chip" data-size="XXL"><strong>XXL</strong><span>54 SQ CUTS • 4 FLAVORS</span></button>
+    <button class="size-chip" data-size="Party"><strong>PARTY</strong><span>90 SQ CUTS • 4 FLAVORS</span></button>
+  </div>
+
+  <div class="pizza-grid" id="pizzaGrid"></div>
+</section>
+
+<section class="order-section section" id="order">
+  <div class="section-title">
+    <p class="eyebrow">BUILD YOUR PIZZA</p>
+    <h2>Start Your Order</h2>
+    <p>Regular & Family: 1 flavor • XL: 2 flavors • XXL & Party: 4 flavors</p>
+  </div>
+
+  <div class="builder">
+    <div class="step">
+      <div class="step-title"><span>1</span><h3>Choose Your Size</h3></div>
+      <div class="size-options" id="sizeOptions"></div>
     </div>
 
-    <div class="size-guide">
-      <div><strong>REGULAR</strong><span>6 SQ CUTS</span></div>
-      <div><strong>FAMILY</strong><span>16 SQ CUTS</span></div>
-      <div><strong>XL</strong><span>24 SQ CUTS</span></div>
-      <div><strong>XXL</strong><span>54 SQ CUTS</span></div>
-      <div><strong>PARTY</strong><span>90 SQ CUTS</span></div>
+    <div class="step">
+      <div class="step-title"><span>2</span><h3>How Many Flavors?</h3></div>
+      <div class="flavor-rule" id="flavorRule"></div>
+      <div class="flavor-count" id="flavorCount"></div>
     </div>
 
-    <div class="pizza-grid">
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">01</span><h3>Weisee</h3></div>
-        <p>Tomato sauce, mozzarella cheese</p>
-        <div class="prices"><b>₱210</b><b>₱440</b><b>₱630</b><b>₱1,200</b><b>₱1,590</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">02</span><h3>Montana</h3></div>
-        <p>Tomato sauce, mozzarella cheese, ham</p>
-        <div class="prices"><b>₱230</b><b>₱500</b><b>₱680</b><b>₱1,230</b><b>₱1,620</b></div>
-      </article>
-
-      <article class="pizza-card featured">
-        <div class="pizza-top"><span class="number">03</span><h3>Hawaiian</h3><span class="tag">BEST SELLER</span></div>
-        <p>Tomato sauce, mozzarella cheese, ham, pineapple</p>
-        <div class="prices"><b>₱240</b><b>₱510</b><b>₱710</b><b>₱1,270</b><b>₱1,660</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">04</span><h3>Zurich</h3></div>
-        <p>Tomato sauce, mozzarella cheese, salami, onion, mushroom, bellpepper</p>
-        <div class="prices"><b>₱250</b><b>₱520</b><b>₱720</b><b>₱1,280</b><b>₱1,670</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">05</span><h3>Tessino</h3></div>
-        <p>Tomato sauce, mozzarella cheese, pepperoni, onion, mushroom, bellpepper</p>
-        <div class="prices"><b>₱260</b><b>₱540</b><b>₱740</b><b>₱1,290</b><b>₱1,710</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">06</span><h3>Swisso Italiano</h3></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, ham, salami, onion, bellpepper</p>
-        <div class="prices"><b>₱270</b><b>₱550</b><b>₱750</b><b>₱1,290</b><b>₱1,710</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">07</span><h3>Bern</h3></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, onion, mushroom</p>
-        <div class="prices"><b>₱250</b><b>₱520</b><b>₱720</b><b>₱1,280</b><b>₱1,670</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">08</span><h3>Calzone</h3><span class="tag">FRESHLY BAKED</span></div>
-        <p>Tomato sauce, mozzarella cheese, salami, mushroom</p>
-        <div class="prices"><b>₱250</b><b>₱520</b><b>₱720</b><b>₱1,280</b><b>₱1,670</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">09</span><h3>Schweins</h3></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, bacon, onion, tomato</p>
-        <div class="prices"><b>₱260</b><b>₱540</b><b>₱740</b><b>₱1,290</b><b>₱1,710</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">10</span><h3>Vegetables</h3><span class="tag">NO MEAT</span></div>
-        <p>Tomato sauce, mozzarella cheese, onion, tomato, mushroom, bellpepper, black olives</p>
-        <div class="prices"><b>₱230</b><b>₱500</b><b>₱680</b><b>₱1,230</b><b>₱1,620</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">11</span><h3>El Tuna</h3></div>
-        <p>Tomato sauce, mozzarella cheese, tuna, onion, bellpepper</p>
-        <div class="prices"><b>₱240</b><b>₱510</b><b>₱710</b><b>₱1,280</b><b>₱1,670</b></div>
-      </article>
-
-      <article class="pizza-card featured">
-        <div class="pizza-top"><span class="number">12</span><h3>Supremo</h3><span class="tag">BEST SELLER</span></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, salami, sausage, onion, bellpepper, black olives</p>
-        <div class="prices"><b>₱280</b><b>₱590</b><b>₱800</b><b>₱1,300</b><b>₱1,730</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">13</span><h3>Greenoz Sausage</h3></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, bacon, sausage, onion, bellpepper</p>
-        <div class="prices"><b>₱270</b><b>₱550</b><b>₱750</b><b>₱1,290</b><b>₱1,710</b></div>
-      </article>
-
-      <article class="pizza-card">
-        <div class="pizza-top"><span class="number">14</span><h3>Anchovies</h3></div>
-        <p>Tomato sauce, mozzarella cheese, anchovies, tuna, onion, bellpepper</p>
-        <div class="prices"><b>₱270</b><b>₱550</b><b>₱750</b><b>₱1,290</b><b>₱1,710</b></div>
-      </article>
-
-      <article class="pizza-card featured">
-        <div class="pizza-top"><span class="number">15</span><h3>Pepperoni</h3><span class="tag">BEST SELLER</span></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, pepperoni, onion, bellpepper</p>
-        <div class="prices"><b>₱270</b><b>₱550</b><b>₱750</b><b>₱1,290</b><b>₱1,710</b></div>
-      </article>
-
-      <article class="pizza-card featured">
-        <div class="pizza-top"><span class="number">16</span><h3>Mama Mia</h3><span class="tag">OVERLOAD • BEST SELLER</span></div>
-        <p>Tomato sauce, mozzarella cheese, ground beef, ham, salami, sausage, bacon, pepperoni, onion, bellpepper, black olives</p>
-        <div class="prices"><b>₱290</b><b>₱600</b><b>₱820</b><b>₱1,330</b><b>₱1,750</b></div>
-      </article>
+    <div class="step">
+      <div class="step-title"><span>3</span><h3>Select Your Flavors</h3></div>
+      <div id="flavorSelectors"></div>
     </div>
 
-    <div class="mobile-note">
-      <strong>Price order:</strong> Regular → Family → XL → XXL → Party
+    <div class="step order-summary">
+      <div class="step-title"><span>4</span><h3>Your Pizza</h3></div>
+      <div id="summary">Choose a size and flavor.</div>
+      <button class="btn btn-red full" id="addPizza">ADD TO ORDER</button>
     </div>
-  </section>
+  </div>
 
-  <section class="section order-section" id="order">
-    <div class="heading">
-      <p class="eyebrow">ORDER THROUGH FACEBOOK</p>
-      <h2>Place Your Order</h2>
-      <p>Fill in the details and we'll prepare your order message for Facebook Messenger.</p>
+  <div class="customer-order">
+    <div class="section-title compact">
+      <p class="eyebrow">DELIVERY DETAILS</p>
+      <h2>Complete Your Order</h2>
     </div>
+    <form id="orderForm">
+      <div class="form-grid">
+        <label>Name<input id="customerName" required placeholder="Your name"></label>
+        <label>Contact #<input id="customerContact" required placeholder="09XXXXXXXXX"></label>
+        <label class="wide">Address<textarea id="customerAddress" required rows="3" placeholder="Delivery address"></textarea></label>
+        <label>Delivery / Pickup<select id="method" required><option value="">Select one</option><option>Delivery</option><option>Pickup</option></select></label>
+        <label>Date and Time<input id="datetime" type="datetime-local" required></label>
+      </div>
+      <div class="cart-box">
+        <div class="cart-head"><strong>Your Order</strong><button type="button" id="clearCart">Clear</button></div>
+        <div id="cartItems"><p class="empty">No pizza added yet.</p></div>
+        <div class="cart-total"><span>Estimated Total</span><strong id="cartTotal">₱0</strong></div>
+      </div>
+      <button type="submit" class="btn btn-red full">CONTINUE TO FACEBOOK MESSENGER</button>
+      <p class="note">Your order details will be copied automatically. Facebook Messenger will open so you can paste and send the order.</p>
+    </form>
+  </div>
+</section>
 
-    <div class="order-layout">
-      <form id="orderForm" class="order-form">
-        <label>Name<input id="name" type="text" placeholder="Your name" required></label>
-        <label>Contact #<input id="contact" type="tel" placeholder="09XXXXXXXXX" required></label>
-        <label>Address<textarea id="address" rows="3" placeholder="Delivery address" required></textarea></label>
-        <div class="two-col">
-          <label>Delivery / Pickup
-            <select id="method" required>
-              <option value="">Select one</option>
-              <option>Delivery</option>
-              <option>Pickup</option>
-            </select>
-          </label>
-          <label>Date and Time<input id="datetime" type="datetime-local" required></label>
-        </div>
-        <label>Size and Flavor<textarea id="pizza" rows="3" placeholder="Example: XL - Hawaiian&#10;Regular - Pepperoni" required></textarea></label>
-        <button class="btn btn-green submit-order" type="submit">Continue to Facebook Messenger</button>
-        <p class="form-note">Your order message will be copied, then Facebook Messenger will open.</p>
-      </form>
-
-      <aside class="order-info">
-        <div class="info-card">
-          <span class="info-icon">🍕</span>
-          <h3>How it works</h3>
-          <ol>
-            <li>Fill in your order details.</li>
-            <li>Click the green order button.</li>
-            <li>Your message is copied automatically.</li>
-            <li>Facebook opens — paste and send.</li>
-          </ol>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <section class="section contact" id="contact">
-    <div class="heading">
+<section class="info-section section" id="branches">
+  <div class="info-grid">
+    <div>
       <p class="eyebrow">GREENOZ PIZZERIA</p>
-      <h2>Let's Talk Pizza.</h2>
-      <p>For orders and inquiries, message Greenoz Pizzeria Kabankalan on Facebook.</p>
-      <a class="btn btn-green" href="https://www.facebook.com/greenozkabranch" target="_blank" rel="noopener">Open Facebook Page</a>
+      <h2>Find Your Nearest Branch.</h2>
+      <p>Visit us in Kabankalan and our other branches. Branch details and map links can be added here.</p>
+      <a class="btn btn-green" href="https://www.facebook.com/greenozkabranch" target="_blank" rel="noopener">VISIT FACEBOOK</a>
     </div>
-  </section>
+    <div class="info-card">
+      <h3>Want to order?</h3>
+      <p>Build your pizza above, enter your delivery details, then send your order through Facebook Messenger.</p>
+      <a href="#order" class="text-link">START AN ORDER →</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact section" id="contact">
+  <div class="section-title">
+    <p class="eyebrow">GET IN TOUCH</p>
+    <h2>Let's Talk Pizza.</h2>
+    <p>For orders and inquiries, message Greenoz Pizzeria Kabankalan on Facebook.</p>
+    <a class="btn btn-red" href="https://www.facebook.com/greenozkabranch" target="_blank" rel="noopener">OPEN FACEBOOK PAGE</a>
+  </div>
+</section>
 </main>
 
-<footer>© <span id="year"></span> Greenoz Pizzeria Kabankalan. All rights reserved.</footer>
+<footer>© <span id="year"></span> Greenoz Pizzeria Kabankalan</footer>
 <script src="script.js"></script>
 </body>
 </html>
