@@ -1,149 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#e10600">
-<title>Greenoz Pizzeria Kabankalan</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Greenoz Pizzeria — Kabankalan</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header class="header">
-  <div class="nav-wrap">
-    <a href="#home" class="brand"><img src="assets/logo.png" alt="Greenoz Pizzeria Kabankalan"></a>
-    <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
-    <nav class="nav">
-      <a href="#home">HOME</a>
-      <a href="#menu">MENU</a>
-      <a href="#order">ORDER</a>
-      <a href="#branches">BRANCHES</a>
-      <a href="#contact">CONTACT</a>
-      <a class="nav-order" href="#order">ORDER NOW</a>
-    </nav>
+<header>
+  <div class="wrap nav">
+    <a href="#home" class="logo"><img src="assets/logo.png" alt="Greenoz Pizzeria"></a>
+    <nav><a href="#home">HOME</a><a href="#menu">MENU</a><a href="#order">ORDER</a></nav>
+    <a class="top-order" href="#order">ORDER NOW</a>
   </div>
 </header>
 
-<main id="home">
-<section class="hero">
-  <div class="hero-inner">
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-content">
     <div class="hero-copy">
-      <p class="eyebrow">GREENOZ PIZZERIA • KABANKALAN</p>
-      <h1>GOOD PIZZA.<br><span>GOOD TIMES.</span></h1>
-      <p>Freshly baked pizza with the flavors you love. Choose your size, pick your flavors, and order through Facebook.</p>
-      <div class="hero-buttons">
-        <a href="#menu" class="btn btn-green">VIEW MENU</a>
-        <a href="#order" class="btn btn-red">ORDER NOW</a>
+      <small>GREENOZ PIZZERIA • KABANKALAN</small>
+      <h1>GOOD PIZZA.<br><b>GOOD MOOD.</b></h1>
+      <p>Freshly made pizza, loaded with flavor and made for sharing.</p>
+      <div class="buttons"><a class="btn red" href="#menu">VIEW MENU</a><a class="btn outline" href="#order">ORDER NOW</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="menu" class="menu">
+  <div class="wrap">
+    <div class="heading light"><small>GREENOZ PIZZERIA</small><h2>OUR PIZZA MENU</h2><p>Hover over a flavor, then click it to order.</p></div>
+    <div id="menuGrid" class="grid"></div>
+  </div>
+</section>
+
+<section id="order" class="order">
+<div class="wrap">
+  <div class="heading"><small>BUILD YOUR ORDER</small><h2>ORDER YOUR PIZZA</h2></div>
+  <div class="order-grid">
+    <div class="builder card">
+      <label>SIZE</label><div id="sizes" class="choices"></div>
+      <label>NUMBER OF FLAVORS</label><div id="counts" class="choices"></div>
+      <p id="rule" class="hint"></p>
+      <label>FLAVORS <span>• MULTI-FLAVOR USES THE HIGHEST-PRICED FLAVOR</span></label>
+      <div id="flavors" class="selects"></div>
+      <div id="builderTotal" class="builder-total"></div>
+      <button id="add" class="btn green full">ADD PIZZA TO ORDER</button>
+    </div>
+    <div class="card cart">
+      <div class="cart-head"><h3>YOUR ORDER</h3><b id="cartCount">0</b></div>
+      <div id="cart"></div>
+      <div class="totals">
+        <div><span>Pizza total</span><strong id="pizzaTotal">₱0</strong></div>
+        <div><span>Delivery fee</span><strong id="deliveryTotal">FREE</strong></div>
+        <div class="grand"><span>TOTAL</span><strong id="total">₱0</strong></div>
       </div>
     </div>
-    <div class="hero-badge">
-      <strong>16</strong>
-      <span>Pizza Flavors</span>
-      <small>Choose your favorites</small>
-    </div>
   </div>
+
+  <div class="heading customer-heading"><small>DELIVERY / PICKUP</small><h2>ORDER DETAILS</h2></div>
+  <form id="form" class="card form">
+    <div class="area">
+      <label>LOCATION / AREA <i>(OPTIONAL)</i></label>
+      <p>Kabankalan Proper is FREE DELIVERY.</p>
+      <select id="area"></select>
+    </div>
+    <div class="form-grid">
+      <label>Name<input id="name" required></label>
+      <label>Contact #<input id="contact" required></label>
+      <label>Delivery / Pickup<select id="method"><option>Delivery</option><option>Pickup</option></select></label>
+      <label>Date<input id="date" type="date" required></label>
+      <label>Time<input id="time" type="time" required></label>
+      <label class="wide">Address / House Details<textarea id="address" required placeholder="House number, street, subdivision, purok, etc."></textarea></label>
+      <label class="wide">Other Information / Description<textarea id="other" placeholder="Landmarks, gate instructions, special requests, etc."></textarea></label>
+    </div>
+    <button class="btn red full" type="submit">ORDER THROUGH FACEBOOK</button>
+    <p class="note">Your order details will be copied, then the Greenoz Facebook page will open. Paste the message into Messenger and send it.</p>
+  </form>
+</div>
 </section>
 
-<section class="menu-section section" id="menu">
-  <div class="section-title">
-    <p class="eyebrow">OUR MENU</p>
-    <h2>Pizza Flavors</h2>
-    <p>Click any flavor to add it to your order.</p>
-  </div>
-
-  <div class="size-guide">
-    <button class="size-chip" data-size="Regular"><strong>REGULAR</strong><span>6 SQ CUTS</span></button>
-    <button class="size-chip" data-size="Family"><strong>FAMILY</strong><span>16 SQ CUTS</span></button>
-    <button class="size-chip" data-size="XL"><strong>XL</strong><span>24 SQ CUTS • 2 FLAVORS</span></button>
-    <button class="size-chip" data-size="XXL"><strong>XXL</strong><span>54 SQ CUTS • 4 FLAVORS</span></button>
-    <button class="size-chip" data-size="Party"><strong>PARTY</strong><span>90 SQ CUTS • 4 FLAVORS</span></button>
-  </div>
-
-  <div class="pizza-grid" id="pizzaGrid"></div>
-</section>
-
-<section class="order-section section" id="order">
-  <div class="section-title">
-    <p class="eyebrow">BUILD YOUR PIZZA</p>
-    <h2>Start Your Order</h2>
-    <p>Regular & Family: 1 flavor • XL: 2 flavors • XXL & Party: 4 flavors</p>
-  </div>
-
-  <div class="builder">
-    <div class="step">
-      <div class="step-title"><span>1</span><h3>Choose Your Size</h3></div>
-      <div class="size-options" id="sizeOptions"></div>
-    </div>
-
-    <div class="step">
-      <div class="step-title"><span>2</span><h3>How Many Flavors?</h3></div>
-      <div class="flavor-rule" id="flavorRule"></div>
-      <div class="flavor-count" id="flavorCount"></div>
-    </div>
-
-    <div class="step">
-      <div class="step-title"><span>3</span><h3>Select Your Flavors</h3></div>
-      <div id="flavorSelectors"></div>
-    </div>
-
-    <div class="step order-summary">
-      <div class="step-title"><span>4</span><h3>Your Pizza</h3></div>
-      <div id="summary">Choose a size and flavor.</div>
-      <button class="btn btn-red full" id="addPizza">ADD TO ORDER</button>
-    </div>
-  </div>
-
-  <div class="customer-order">
-    <div class="section-title compact">
-      <p class="eyebrow">DELIVERY DETAILS</p>
-      <h2>Complete Your Order</h2>
-    </div>
-    <form id="orderForm">
-      <div class="form-grid">
-        <label>Name<input id="customerName" required placeholder="Your name"></label>
-        <label>Contact #<input id="customerContact" required placeholder="09XXXXXXXXX"></label>
-        <label class="wide">Address<textarea id="customerAddress" required rows="3" placeholder="Delivery address"></textarea></label>
-        <label>Delivery / Pickup<select id="method" required><option value="">Select one</option><option>Delivery</option><option>Pickup</option></select></label>
-        <label>Date and Time<input id="datetime" type="datetime-local" required></label>
-      </div><label class="wide">Other Information / Description<textarea id="formOtherInfo" rows="3" placeholder="Landmarks, gate instructions, special requests, or other details (optional)"></textarea></label>
-      <div class="cart-box">
-        <div class="cart-head"><strong>Your Order</strong><button type="button" id="clearCart">Clear</button></div>
-        <div id="cartItems"><p class="empty">No pizza added yet.</p></div>
-        <div class="cart-total"><span>Estimated Total</span><strong id="cartTotal">₱0</strong></div>
-      </div>
-      <button type="submit" class="btn btn-red full">CONTINUE TO FACEBOOK MESSENGER</button>
-      <p class="note">Your order details will be copied automatically. Facebook Messenger will open so you can paste and send the order.</p>
-    </form>
-  </div>
-</section>
-
-<section class="info-section section" id="branches">
-  <div class="info-grid">
-    <div>
-      <p class="eyebrow">GREENOZ PIZZERIA</p>
-      <h2>Find Your Nearest Branch.</h2>
-      <p>Visit us in Kabankalan and our other branches. Branch details and map links can be added here.</p>
-      <a class="btn btn-green" href="https://www.facebook.com/greenozkabranch" target="_blank" rel="noopener">VISIT FACEBOOK</a>
-    </div>
-    <div class="info-card">
-      <h3>Want to order?</h3>
-      <p>Build your pizza above, enter your delivery details, then send your order through Facebook Messenger.</p>
-      <a href="#order" class="text-link">START AN ORDER →</a>
-    </div>
-  </div>
-</section>
-
-<section class="contact section" id="contact">
-  <div class="section-title">
-    <p class="eyebrow">GET IN TOUCH</p>
-    <h2>Let's Talk Pizza.</h2>
-    <p>For orders and inquiries, message Greenoz Pizzeria Kabankalan on Facebook.</p>
-    <a class="btn btn-red" href="https://www.facebook.com/greenozkabranch" target="_blank" rel="noopener">OPEN FACEBOOK PAGE</a>
-  </div>
-</section>
-</main>
-
-<footer>© <span id="year"></span> Greenoz Pizzeria Kabankalan</footer>
+<footer><div class="wrap foot"><img src="assets/logo.png" alt="Greenoz Pizzeria"><span>© Greenoz Pizzeria Kabankalan</span><a href="https://www.facebook.com/greenozkabranch" target="_blank">Facebook Page</a></div></footer>
 <script src="script.js"></script>
-</body>
-</html>
+</body></html>

@@ -1,145 +1,74 @@
+const flavors=[["Cheese", "Classic cheese pizza", [260, 520, 780, 1450, 2350]], ["Ham & Cheese", "Ham, cheese and Greenoz sauce", [300, 600, 900, 1650, 2650]], ["Hawaiian", "Ham, pineapple and cheese", [300, 600, 900, 1650, 2650]], ["Pepperoni", "Loaded with pepperoni and cheese", [320, 640, 960, 1750, 2800]], ["Bacon", "Crispy bacon and cheese", [320, 640, 960, 1750, 2800]], ["Bacon & Mushroom", "Bacon, mushroom and cheese", [330, 660, 990, 1800, 2900]], ["Beef & Mushroom", "Seasoned beef, mushroom and cheese", [330, 660, 990, 1800, 2900]], ["Beef & Onion", "Savory beef, onion and cheese", [330, 660, 990, 1800, 2900]], ["Chicken BBQ", "Chicken, BBQ sauce and cheese", [330, 660, 990, 1800, 2900]], ["Chicken Supreme", "Chicken with assorted toppings", [350, 700, 1050, 1900, 3050]], ["Meat Lovers", "A loaded combination of savory meats", [370, 740, 1110, 2000, 3200]], ["Supreme", "Our fully loaded signature pizza", [380, 760, 1140, 2050, 3300]], ["Garden", "Fresh vegetables and cheese", [300, 600, 900, 1650, 2650]], ["Tuna", "Tuna, onion and cheese", [320, 640, 960, 1750, 2800]], ["Sausage", "Savory sausage and cheese", [320, 640, 960, 1750, 2800]], ["Greenoz Special", "Our special loaded Greenoz combination", [390, 780, 1170, 2100, 3400]]];
+const areas=[["Aguisan", 200], ["Akina", 30], ["Andulawan", 60], ["Balicaocao", 70], ["Balicaocao resort", 180], ["Binalbagan", 250], ["Binicuil", 40], ["Bino", 80], ["Bocana", 170], ["Calasa", 200], ["Camansi", 200], ["Camingawan", 220], ["Camugao", 30], ["Caradio-an", 130], ["Casipsipan", 80], ["Catali iglesia", 80], ["Cauayan proper", 250], ["CPSU", 200], ["Crossing Buenavista", 100], ["Daan Banua", 70], ["Dancalan", 120], ["Goce", 150], ["Hilamonan", 60], ["Himamaylan Proper", 160], ["Ilog Proper", 100], ["Linao", 80], ["Lupni Proper", 50], ["Malabong", 70], ["Mambugsay", 200], ["Manalad", 60], ["Naga", 60], ["Oringao", 150], ["Orong", 100], ["Overflow", 60], ["Palma", 80], ["Salong", 100], ["Saraet", 180], ["Sitio Patay", 150], ["Sonedco", 150], ["Su-ay", 80], ["Tagukon", 250], ["Tapi", 250], ["Tooy", 100], ["Tuyuman", 120], ["Vista Alegre", 100]];
+const sizes=[["Regular","6 SQ CUTS",1],["Family","16 SQ CUTS",1],["XL","24 SQ CUTS",2],["XXL","54 SQ CUTS",4],["Party","90 SQ CUTS",4]];
+let size="Regular",count=1,chosen=[],cart=[],fee=0;
+const money=n=>"₱"+n.toLocaleString();
+const grid=document.getElementById("menuGrid");
+grid.innerHTML=flavors.map((f,i)=>`<article class="pizza" data-i="${i}"><h3>${f[0]}</h3><p>${f[1]}</p><div class="from">FROM ${money(f[2][0])}</div></article>`).join("");
+grid.querySelectorAll(".pizza").forEach(x=>x.onclick=()=>{document.getElementById("order").scrollIntoView({behavior:"smooth"});chosen=[+x.dataset.i];render();document.querySelector("#flavors select").value=x.dataset.i;});
 
-const deliveryAreas=[["Aguisan",200],["Akina",30],["Andulawan",60],["Balicaocao",70],["Balicaocao resort",180],["Binalbagan",250],["Binicuil",40],["Bino",80],["Bocana",170],["Calasa",200],["Camansi",200],["Camingawan",220],["Camugao",30],["Caradio-an",130],["Casipsipan",80],["Catali iglesia",80],["Cauayan proper",250],["CPSU",200],["Crossing Buenavista",100],["Daan Banua",70],["Dancalan",120],["Goce",150],["Hilamonan",60],["Himamaylan Proper",160],["Ilog Proper",100],["Linao",80],["Lupni Proper",50],["Malabong",70],["Mambugsay",200],["Manalad",60],["Naga",60],["Oringao",150],["Orong",100],["Overflow",60],["Palma",80],["Salong",100],["Saraet",180],["Sitio Patay",150],["Sonedco",150],["Su-ay",80],["Tagukon",250],["Tapi",250],["Tooy",100],["Tuyuman",120],["Vista Alegre",100]];
-const areaSelect=document.createElement("select");
-areaSelect.id="deliveryArea";
-areaSelect.innerHTML='<option value="">Select your location / area (optional)</option><option value="Kabankalan Proper" data-fee="0">Kabankalan Proper — FREE DELIVERY</option>'+deliveryAreas.map(a=>`<option value="${a[0]}" data-fee="${a[1]}">${a[0]}</option>`).join("");
-const locationBox=document.createElement("div");
-locationBox.className="location-box";
-locationBox.innerHTML='<h3>DELIVERY AREA <em>(OPTIONAL)</em></h3><p>Kabankalan Proper is FREE DELIVERY.</p>';
-locationBox.appendChild(areaSelect);
-document.querySelector(".customer-order").prepend(locationBox);
-let deliveryFee=0;
-areaSelect.addEventListener("change",e=>{deliveryFee=Number(e.target.selectedOptions[0].dataset.fee||0);if(typeof renderCart==="function")renderCart();});
+const sizeBox=document.getElementById("sizes");
+sizeBox.innerHTML=sizes.map(s=>`<button type="button" class="choice ${s[0]==="Regular"?"active":""}" data-size="${s[0]}">${s[0]}<br><small>${s[1]}</small></button>`).join("");
+sizeBox.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{size=b.dataset.size;chosen=[];count=sizes.find(s=>s[0]===size)[2]===1?1:1;render();});
 
-const flavors=[
-["Weisee","Tomato sauce, mozzarella cheese",[210,440,630,1200,1590],""],
-["Montana","Tomato sauce, mozzarella cheese, ham",[230,500,680,1230,1620],""],
-["Hawaiian","Tomato sauce, mozzarella cheese, ham, pineapple",[240,510,710,1270,1660],"BEST SELLER"],
-["Zurich","Tomato sauce, mozzarella cheese, salami, onion, mushroom, bellpepper",[250,520,720,1280,1670],""],
-["Tessino","Tomato sauce, mozzarella cheese, pepperoni, onion, mushroom, bellpepper",[260,540,740,1290,1710],""],
-["Swisso Italiano","Tomato sauce, mozzarella cheese, ground beef, ham, salami, onion, bellpepper",[270,550,750,1290,1710],""],
-["Bern","Tomato sauce, mozzarella cheese, ground beef, onion, mushroom",[250,520,720,1280,1670],""],
-["Calzone","Tomato sauce, mozzarella cheese, salami, mushroom",[250,520,720,1280,1670],"FRESHLY BAKED"],
-["Schweins","Tomato sauce, mozzarella cheese, ground beef, bacon, onion, tomato",[260,540,740,1290,1710],""],
-["Vegetables","Tomato sauce, mozzarella cheese, onion, tomato, mushroom, bellpepper, black olives",[230,500,680,1230,1620],"NO MEAT"],
-["El Tuna","Tomato sauce, mozzarella cheese, tuna, onion, bellpepper",[240,510,710,1280,1670],""],
-["Supremo","Tomato sauce, mozzarella cheese, ground beef, salami, sausage, onion, bellpepper, black olives",[280,590,800,1300,1730],"BEST SELLER"],
-["Greenoz Sausage","Tomato sauce, mozzarella cheese, ground beef, bacon, sausage, onion, bellpepper",[270,550,750,1290,1710],""],
-["Anchovies","Tomato sauce, mozzarella cheese, anchovies, tuna, onion, bellpepper",[270,550,750,1290,1710],""],
-["Pepperoni","Tomato sauce, mozzarella cheese, ground beef, pepperoni, onion, bellpepper",[270,550,750,1290,1710],"BEST SELLER"],
-["Mama Mia","Tomato sauce, mozzarella cheese, ground beef, ham, salami, sausage, bacon, pepperoni, onion, bellpepper, black olives",[290,600,820,1330,1750],"OVERLOAD • BEST SELLER"]
-];
-
-const sizes=[
-["Regular","6 SQ CUTS",1],
-["Family","16 SQ CUTS",1],
-["XL","24 SQ CUTS",2],
-["XXL","54 SQ CUTS",4],
-["Party","90 SQ CUTS",4]
-];
-const sizeKeys=["Regular","Family","XL","XXL","Party"];
-let selectedSize="Regular", selectedCount=1, selectedFlavors=[], cart=[];
-
-const pizzaGrid=document.getElementById("pizzaGrid");
-pizzaGrid.innerHTML=flavors.map((f,i)=>`
-<article class="pizza-card" data-flavor="${i}">
- <div class="pizza-top"><span class="pizza-number">${String(i+1).padStart(2,"0")}</span><h3>${f[0]}</h3>${f[3]?`<span class="tag">${f[3]}</span>`:""}</div>
- <p class="ingredients">${f[1]}</p>
- <div class="price-row">${f[2].map((p,j)=>`<button data-size="${sizeKeys[j]}" data-flavor="${i}">₱${p.toLocaleString()}</button>`).join("")}</div>
-</article>`).join("");
-
-const sizeOptions=document.getElementById("sizeOptions");
-sizeOptions.innerHTML=sizes.map(s=>`<button class="size-option" data-size="${s[0]}"><b>${s[0]}</b><small>${s[1]} • ${s[2]} FLAVOR${s[2]>1?"S":""}</small></button>`).join("");
-
-function allowedCount(){return sizes.find(s=>s[0]===selectedSize)[2]}
-function money(n){return "₱"+n.toLocaleString()}
-function setSize(size){
- selectedSize=size; selectedCount=1; selectedFlavors=[];
- document.querySelectorAll(".size-chip,.size-option").forEach(x=>x.classList.toggle("active",x.dataset.size===size));
- document.getElementById("flavorRule").innerHTML=allowedCount()===1
- ? `<strong>${size}</strong> allows <strong>1 flavor only</strong>.`
- : `<strong>${size}</strong> allows <strong>1 or 2 flavors</strong>. Choose one or two.`;
- document.getElementById("flavorCount").innerHTML=allowedCount()===1
- ? `<button class="count-btn active">1 FLAVOR</button>`
- : `<button class="count-btn active" data-count="1">1 FLAVOR</button><button class="count-btn" data-count="2">2 FLAVORS</button>`;
- document.querySelectorAll(".count-btn[data-count]").forEach(b=>b.addEventListener("click",()=>{
-   selectedCount=Number(b.dataset.count); selectedFlavors=[];
-   document.querySelectorAll(".count-btn").forEach(x=>x.classList.toggle("active",x===b));
-   renderSelectors(); renderSummary();
- }));
- renderSelectors();
- renderSummary();
+function render(){
+ const max=sizes.find(s=>s[0]===size)[2];
+ sizeBox.querySelectorAll(".choice").forEach(b=>b.classList.toggle("active",b.dataset.size===size));
+ const nums=max===1?[1]:max===2?[1,2]:[1,2,3,4];
+ document.getElementById("counts").innerHTML=nums.map(n=>`<button type="button" class="choice ${n===count?"active":""}" data-n="${n}">${n} FLAVOR${n>1?"S":""}</button>`).join("");
+ document.querySelectorAll("#counts .choice").forEach(b=>b.onclick=()=>{count=+b.dataset.n;chosen=[];render();});
+ document.getElementById("rule").innerHTML=max===1?`<b>${size}</b> allows 1 flavor only.`:`<b>${size}</b> allows 1 to ${max} flavors.`;
+ document.getElementById("flavors").innerHTML=Array.from({length:count},(_,i)=>`<select data-slot="${i}"><option value="">Select flavor ${i+1}</option>${flavors.map((f,j)=>`<option value="${j}" ${chosen[i]===j?"selected":""}>${j+1}. ${f[0]}</option>`).join("")}</select>`).join("");
+ document.querySelectorAll("#flavors select").forEach(s=>s.onchange=()=>{chosen[+s.dataset.slot]=s.value===""?null:+s.value;renderTotal();});
+ renderTotal();
 }
-function renderSelectors(){
- const box=document.getElementById("flavorSelectors");
- box.innerHTML=Array.from({length:selectedCount},(_,i)=>`<select class="flavor-select" data-slot="${i}"><option value="">Choose flavor ${i+1}</option>${flavors.map((f,j)=>`<option value="${j}" ${selectedFlavors[i]==j?"selected":""}>${j+1}. ${f[0]}</option>`).join("")}</select>`).join("");
- box.querySelectorAll("select").forEach(s=>s.addEventListener("change",e=>{selectedFlavors[Number(e.target.dataset.slot)]=e.target.value===""?null:Number(e.target.value);renderSummary()}));
+function renderTotal(){
+ const v=chosen.filter(x=>Number.isInteger(x));
+ const price=v.length===count?Math.max(...v.map(i=>flavors[i][2][sizes.findIndex(s=>s[0]===size)])):0;
+ document.getElementById("builderTotal").innerHTML=`<span>${v.length} / ${count} flavors</span><strong>${price?money(price):"—"}</strong>`;
 }
-function renderSummary(){
- const valid=selectedFlavors.filter(v=>Number.isInteger(v));
- const price=valid.length===selectedCount?Math.max(...valid.map(v=>flavors[v][2][sizeKeys.indexOf(selectedSize)])):0;
- document.getElementById("summary").innerHTML=`<div class="summary-line"><span>Size</span><strong>${selectedSize}</strong></div><div class="summary-line"><span>Flavors</span><strong>${valid.length}/${selectedCount}</strong></div><div class="summary-line"><span>Price</span><strong>${valid.length===selectedCount?money(price):"—"}</strong></div>`;
+document.getElementById("add").onclick=()=>{
+ const v=chosen.filter(x=>Number.isInteger(x));
+ if(v.length!==count){alert("Please select all flavors.");return;}
+ const price=Math.max(...v.map(i=>flavors[i][2][sizes.findIndex(s=>s[0]===size)]));
+ cart.push({size,flavors:v.map(i=>flavors[i][0]),price});
+ drawCart();
+};
+function drawCart(){
+ document.getElementById("cart").innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-item"><div><b>${x.size}</b><br>${x.flavors.join(" / ")}<br>${money(x.price)}</div><button class="remove" onclick="removeItem(${i})">REMOVE</button></div>`).join(""):`<div class="empty">Your order is empty.</div>`;
+ const p=cart.reduce((a,x)=>a+x.price,0);
+ document.getElementById("cartCount").textContent=cart.length;
+ document.getElementById("pizzaTotal").textContent=money(p);
+ document.getElementById("deliveryTotal").textContent=fee?money(fee):"FREE";
+ document.getElementById("total").textContent=money(p+fee);
 }
-function addPizza(){
- const valid=selectedFlavors.filter(v=>Number.isInteger(v));
- if(valid.length!==selectedCount){alert(`Please choose ${selectedCount} flavor${selectedCount>1?"s":""}.`);return}
- const price=Math.max(...valid.map(v=>flavors[v][2][sizeKeys.indexOf(selectedSize)]));
- cart.push({size:selectedSize,flavors:valid.map(v=>flavors[v][0]),price});
- renderCart();
- document.getElementById("customer-order").scrollIntoView?.({behavior:"smooth"});
-}
-function renderCart(){
- const box=document.getElementById("cartItems");
- if(!cart.length){box.innerHTML='<p class="empty">No pizza added yet.</p>';document.getElementById("cartTotal").textContent="₱0";return}
- box.innerHTML=cart.map((item,i)=>`<div class="cart-item"><div><strong>${item.size}</strong> — ${item.flavors.join(" / ")}<br><small>${money(item.price)}</small></div><button type="button" onclick="removeCart(${i})">REMOVE</button></div>`).join("");
- document.getElementById("cartTotal").textContent=money(cart.reduce((a,b)=>a+b.price,0));
-}
-function removeCart(i){cart.splice(i,1);renderCart()}
-document.querySelectorAll(".size-chip").forEach(b=>b.addEventListener("click",()=>{setSize(b.dataset.size);document.getElementById("order").scrollIntoView({behavior:"smooth"})}));
-document.querySelectorAll(".size-option").forEach(b=>b.addEventListener("click",()=>setSize(b.dataset.size)));
-pizzaGrid.addEventListener("click",e=>{
- const btn=e.target.closest("button[data-size]");
- const card=e.target.closest(".pizza-card");
- if(btn){setSize(btn.dataset.size);selectedFlavors=[Number(btn.dataset.flavor)];renderSelectors();renderSummary();document.getElementById("order").scrollIntoView({behavior:"smooth"});return}
- if(card){const i=Number(card.dataset.flavor);selectedFlavors=[i];renderSelectors();renderSummary();document.getElementById("order").scrollIntoView({behavior:"smooth"})}
-});
-document.getElementById("addPizza").addEventListener("click",addPizza);
-document.getElementById("clearCart").addEventListener("click",()=>{cart=[];renderCart()});
-
-document.querySelector(".menu-toggle").addEventListener("click",()=>document.querySelector(".nav").classList.toggle("open"));
-document.querySelectorAll(".nav a").forEach(a=>a.addEventListener("click",()=>document.querySelector(".nav").classList.remove("open")));
-document.getElementById("year").textContent=new Date().getFullYear();
-
-setSize("Regular");
-
-document.getElementById("orderForm").addEventListener("submit",async e=>{
+window.removeItem=i=>{cart.splice(i,1);drawCart();};
+const area=document.getElementById("area");
+area.innerHTML=`<option value="" data-fee="0">Select your location / area (optional)</option><option value="Kabankalan Proper" data-fee="0">Kabankalan Proper — FREE DELIVERY</option>`+areas.map(a=>`<option value="${a[0]}" data-fee="${a[1]}">${a[0]}</option>`).join("");
+area.onchange=()=>{fee=+area.selectedOptions[0].dataset.fee||0;drawCart();};
+document.getElementById("form").onsubmit=async e=>{
  e.preventDefault();
- if(!cart.length){alert("Please add at least one pizza to your order.");return}
- const name=document.getElementById("customerName").value.trim();
- const contact=document.getElementById("customerContact").value.trim();
- const address=document.getElementById("customerAddress").value.trim(); const otherInfo=document.getElementById("formOtherInfo")?.value.trim()||""; const area=areaSelect.value||"Kabankalan Proper (FREE DELIVERY)";
- const method=document.getElementById("method").value;
- const dt=document.getElementById("datetime").value;
- const dateText=dt?new Date(dt).toLocaleString([],{year:"numeric",month:"long",day:"numeric",hour:"numeric",minute:"2-digit"}):"";
- const items=cart.map((x,i)=>`${i+1}. ${x.size} — ${x.flavors.join(" / ")} — ${money(x.price)}`).join("\n");
- const total=money(cart.reduce((a,b)=>a+b.price,0));
- const message=`To order, kindly fill in:
+ if(!cart.length){alert("Please add at least one pizza.");return;}
+ const p=cart.reduce((a,x)=>a+x.price,0),total=p+fee;
+ const msg=`To order, kindly fill in:
 
-Name: ${name}
-Contact#: ${contact}
-Address / House Details: ${address}
-Location / Area: ${area}
-Other Information / Description: ${otherInfo||"None"}
-Delivery/Pickup: ${method}
-Date and Time: ${dateText}
+Name: ${document.getElementById("name").value}
+Contact#: ${document.getElementById("contact").value}
+Address / House Details: ${document.getElementById("address").value}
+Location / Area: ${area.value||"Kabankalan Proper (FREE DELIVERY)"}
+Other Information / Description: ${document.getElementById("other").value||"None"}
+Delivery/Pickup: ${document.getElementById("method").value}
+Date: ${document.getElementById("date").value}
+Time: ${document.getElementById("time").value}
 
 ORDER:
-${items}
+${cart.map((x,i)=>`${i+1}. ${x.size} — ${x.flavors.join(" / ")} — ${money(x.price)}`).join("\n")}
 
-Pizza Total: ${total-deliveryFee}
-Delivery Fee: ${deliveryFee?money(deliveryFee):"FREE"}
-TOTAL: ${total}`;
- try{await navigator.clipboard.writeText(message);alert("Your order details have been copied. Facebook will open next. Paste the message into Messenger and send it.");}
- catch{window.prompt("Copy this order message, then paste it into Facebook Messenger:",message)}
- window.open("https://www.facebook.com/greenozkabranch","_blank","noopener");
-});
+Pizza Total: ${money(p)}
+Delivery Fee: ${fee?money(fee):"FREE"}
+TOTAL: ${money(total)}`;
+ const open=()=>window.open("https://www.facebook.com/greenozkabranch","_blank");
+ try{await navigator.clipboard.writeText(msg);alert("Order details copied. Paste them into Facebook Messenger.");open();}
+ catch{prompt("Copy your order details:",msg);open();}
+};
+render();drawCart();
