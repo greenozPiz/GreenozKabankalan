@@ -41,15 +41,38 @@
 <div class="wrap">
   <div class="heading"><small>YOUR ORDER</small><h2>ORDER YOUR PIZZA</h2></div>
   <div class="order-grid">
-    <div class="builder card">
-      <label>SIZE</label><div id="sizes" class="choices"></div>
-      <label>NUMBER OF FLAVORS</label><div id="counts" class="choices"></div>
-      <p id="rule" class="hint"></p>
-      <label>FLAVORS <span>• MULTI-FLAVOR USES THE HIGHEST-PRICED FLAVOR</span></label>
-      <div id="flavors" class="selects"></div>
-      <div id="builderTotal" class="builder-total"></div>
-      <button id="add" class="btn green full">ADD PIZZA TO ORDER</button>
+    <div class="order-main">
+      <div class="builder card">
+        <label>SIZE</label><div id="sizes" class="choices"></div>
+        <label>NUMBER OF FLAVORS</label><div id="counts" class="choices"></div>
+        <p id="rule" class="hint"></p>
+        <label>FLAVORS <span>• MULTI-FLAVOR USES THE HIGHEST-PRICED FLAVOR</span></label>
+        <div id="flavors" class="selects"></div>
+        <div id="builderTotal" class="builder-total"></div>
+        <button id="add" class="btn green full">ADD PIZZA TO ORDER</button>
+      </div>
+
+      <div class="heading customer-heading"><small>DELIVERY / PICKUP</small><h2>ORDER DETAILS</h2></div>
+      <form id="form" class="card form">
+        <div class="area">
+          <label>LOCATION / AREA <i>(OPTIONAL)</i></label>
+          <p>Kabankalan Proper is FREE DELIVERY.</p>
+          <select id="area"></select>
+        </div>
+        <div class="form-grid">
+          <label>Name<input id="name" required></label>
+          <label>Contact #<input id="contact" required></label>
+          <label>Delivery / Pickup<select id="method"><option>Delivery</option><option>Pickup</option></select></label>
+          <label>Date<input id="date" type="date" required></label>
+          <label>Time<input id="time" type="time" required></label>
+          <label class="wide">Address / House Details<textarea id="address" required placeholder="House number, street, subdivision, purok, etc."></textarea></label>
+          <label class="wide">Other Information / Description<textarea id="other" placeholder="Landmarks, gate instructions, special requests, etc."></textarea></label>
+        </div>
+        <button class="btn red full" type="submit">ORDER THROUGH FACEBOOK</button>
+        <p class="note">Your order details will be copied, then the Greenoz Facebook page will open. Paste the message into Messenger and send it.</p>
+      </form>
     </div>
+
     <div class="card cart">
       <div class="cart-head"><h3>YOUR ORDER</h3><b id="cartCount">0</b></div>
       <div id="cart"></div>
@@ -60,26 +83,6 @@
       </div>
     </div>
   </div>
-
-  <div class="heading customer-heading"><small>DELIVERY / PICKUP</small><h2>ORDER DETAILS</h2></div>
-  <form id="form" class="card form">
-    <div class="area">
-      <label>LOCATION / AREA <i>(OPTIONAL)</i></label>
-      <p>Kabankalan Proper is FREE DELIVERY.</p>
-      <select id="area"></select>
-    </div>
-    <div class="form-grid">
-      <label>Name<input id="name" required></label>
-      <label>Contact #<input id="contact" required></label>
-      <label>Delivery / Pickup<select id="method"><option>Delivery</option><option>Pickup</option></select></label>
-      <label>Date<input id="date" type="date" required></label>
-      <label>Time<input id="time" type="time" required></label>
-      <label class="wide">Address / House Details<textarea id="address" required placeholder="House number, street, subdivision, purok, etc."></textarea></label>
-      <label class="wide">Other Information / Description<textarea id="other" placeholder="Landmarks, gate instructions, special requests, etc."></textarea></label>
-    </div>
-    <button class="btn red full" type="submit">ORDER THROUGH FACEBOOK</button>
-    <p class="note">Your order details will be copied, then the Greenoz Facebook page will open. Paste the message into Messenger and send it.</p>
-  </form>
 </div>
 </section>
 
