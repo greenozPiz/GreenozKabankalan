@@ -9,7 +9,7 @@ header{position:sticky;top:0;z-index:100;background:#07ff3ce0;border-bottom:1px 
 .hero-copy h1{margin-bottom:18px}
 .hero-copy p{max-width:600px}
 .menu{background:#e10600;padding:78px 0 90px;position:relative}
-.menu:before{content:"";position:absolute;inset:0;background:url("assets/menu.png") repeat;opacity:.07;background-size:420px;pointer-events:none}
+.menu:before{content:"";position:absolute;inset:0;background:url("assets/menu.png") repeat;opacity:.04;background-size:420px;pointer-events:none}
 .pizza{background:#fff;border:2px solid #fff;border-radius:14px;padding:20px;cursor:pointer;transition:transform .2s,background .2s,border-color .2s,color .2s;box-shadow:0 8px 22px rgba(70,0,0,.18)}
 .pizza:hover{background:#008f4c;color:#fff;border-color:#008f4c;transform:translateY(-3px)}
 .pizza:hover h3,.pizza:hover p,.pizza:hover .from{color:#fff}
